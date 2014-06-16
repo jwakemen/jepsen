@@ -29,13 +29,19 @@
                  [com.netflix.curator/curator-framework "1.3.3"
                   :exclusions [org.slf4j/slf4j-api
                                org.slf4j-log4j12
-                               com.google.guava/guava]]]
+                               com.google.guava/guava]]
+                 [clj-http "0.9.2"]]
   :profiles {:riak {:dependencies
                     [[com.basho.riak/riak-client "1.4.4"
                       :exclusions [com.fasterxml.jackson.core/jackson-core
                                    org.apache.httpcomponents/httpclient]]]
                     :source-paths ["riak/src"]
                     :test-paths ["riak/test"]}
+
+            :sirius {
+                    :source-paths ["src" "sirius/src"]
+                    :test-paths ["test" "sirius/test"]}
+
              :rabbitmq {:dependencies
                         [[com.novemberain/langohr "2.7.1"
                           :exclusions [com.google.guava/guava]]]
@@ -62,6 +68,6 @@
                              :source-paths ["elasticsearch/src"]
                              :test-paths ["elasticsearch/test"]}}
   :main jepsen.repl
-  :jvm-opts ["-Xmx32g" "-XX:+UseConcMarkSweepGC" "-XX:+UseParNewGC"
+  :jvm-opts ["-Xmx10g" "-XX:+UseConcMarkSweepGC" "-XX:+UseParNewGC"
              "-XX:+CMSParallelRemarkEnabled" "-XX:+AggressiveOpts"
              "-XX:+UseFastAccessorMethods" "-server"])
